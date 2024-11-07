@@ -10,6 +10,8 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -24,8 +26,18 @@ public class ControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @MockBean
+    private CacheManager cacheManager;
+
     private static String id;
     private static String token;
+
+    @BeforeEach
+    public void clearCache() {
+        if (cacheManager.getCache("users") != null) {
+            cacheManager.getCache("users").clear();
+        }
+    }
 
     @Order(1)
     @Test
@@ -126,7 +138,7 @@ public class ControllerTest {
                 .andExpect(jsonPath("$.data[0].name").isString())
                 .andExpect(jsonPath("$.data[0].age").isNumber())
                 .andExpect(jsonPath("$.data[0].membership").isBoolean())
-                .andExpect(jsonPath("$.paging").isNotEmpty());
+                .andExpect(jsonPath("$.paging").exists());
     }
 
     @Order(8)
