@@ -17,7 +17,7 @@ Aplikasi ini menggunakan database PostgresSQL sebagai pengelolaan data.
 1. Pastikan anda menginstall Java Development Kit (JDK) minimal versi 17 dan Maven pada komputer anda.
 2. Clone repository ini ke lokal dengan menggunakan perintah
     ```bash
-    git clone https://github.com/rasyadpras/sturdy-meme.git
+    git clone https://github.com/rasyadpras/cautious-telegram.git
     ```
 3. Buka terminal atau command prompt dan arahkan ke direktori proyek di mana anda menyimpan file.
 4. Pastikan anda telah mengkonfigurasi file `application.properties` dengan benar.
